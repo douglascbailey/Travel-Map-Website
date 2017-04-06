@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Destination Unknown</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Where would you like to go?</h2>
+  <form>
+    <div class="form-group">
+      <!-- <label for="text">Latitude:</label> 
+      <input type="text" class="form-control" name="Lat" id="Lat" placeholder="Enter latitude between -90 and 90" min=-90 max=90>-->
+   <p> Latitude: <input type="text" name="Lat" maxlength="10" min="-90" max="90" required onfocusout="CheckLat(this)" class="form-control"></p>
+    </div>
+    <div class="form-group">
+      <!--<label for="text">Longitude:</label>
+      <input type="text" class="form-control" name="Long" id="Long" placeholder="Enter longitude between -180 and 180" min=-180 max=180>-->
+    <p>Longitude: <input type="text" name="Long" maxlength="10" min="-180" max="180" required onfocusout="CheckLong(this)" class="form-control"></p>
+  </div>
+    <!-- <button type="button" class="btn btn-default" onclick="CheckInput()":>Check Values</button>-->
+    <p><button type="submit" class="btn btn-default" formmethod="Post" formenctype="application/x-www-form-urlencoded" formaction="http://Localhost:3000/v1/getCustomMap">Submit</button></p>
+ <p id="Alert"></p>
+ <p>{{Error}}</p>
+
+<script>
+function CheckLat(Lat) {
+    var LA, LAObj;
+        // Get the value of the input field with id="Lat"
+    LAObj = Lat;
+    LA = Lat.value;
+    // If Lat is Not a Number or less than one or greater than 90
+    if (isNaN(LA) || LAObj.checkValidity() == false ) {
+        //async.waterfall ([
+        alert("Your latitude is not valid; must be between -90 and 90");
+        Lat.value = "";
+        form.Lat.Focus();
+        return
+        //])
+    }; 
+}
+
+function CheckLong(Long) {
+    var LO, LOObj;
+        // Get the value of the input field with id="Lat"
+    LOObj = Long;
+    LO = Long.value;
+    // If Lat is Not a Number or less than one or greater than 90
+    if (isNaN(LO) || LOObj.checkValidity() == false ) {
+        Long.value = "";
+       // form.Long.Focus();
+        //alert("Your latitude is not valid; must be between -90 and 90");
+        //return
+    };  
+}
+/* function CheckInput(Form) {
+    var LA;
+    var LO;
+
+    // Get the value of the input field with id="Lat"
+    LAObj = Form.getElementById("Lat");
+    LOObj = Form.getElementById("Long");
+    LA = LAObj.value;
+    LO = LOObj.value;
+    
+    // If Lat is Not a Number or less than one or greater than 90
+    if (isNaN(LA) || LAObj.checkValidity() == false ) {
+        alert("Your latitude is not valid; must be between -90 and 90");
+        return false;
+    };
+    // If Long is Not a Number or less than one or greater than 180
+    if (isNaN(LO) || LOObj.checkValidity() == false ) {
+        alert("Your longitude is not valid; must be between -180 and 180");
+        return false;
+    };
+    return true;
+} */
+</script>
+
+  </form>
+</div>
+
+</body>
+</html>
