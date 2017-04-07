@@ -42,15 +42,6 @@ fs.readFile('./config.json', 'utf8', function(err, data)  {
     console.log(`Web server now listening on port ${config.webserver.port}`);
     });
 });
-
-/*app.listen(config.webserver.port, function(err) {
-    if (err) {
-        console.log(err.message);
-        return;
-    }
-    console.log(`Web server now listening on port ${config.webserver.port}`);
-});
-*/
 } //end of start_web_service
 
 start_web_service(); //calls function to load web service
@@ -67,18 +58,6 @@ app.post('/v1/getCustomMap', function (req, res) {
     console.log('The POST req.body is :' + JSON.stringify(req.body));
     load_custom_map_page(req, res)
 });
-
-/* Commented out by DCB
-app.put('/v1/albums.json', album_hdlr.create_album);
-app.get('/v1/albums/:album_name.json', album_hdlr.album_by_name);
-app.get('/v1/albums/:album_name/photos.json', album_hdlr.photos_for_album);
-app.put('/v1/albums/:album_name/photos.json',
-        upload.single("photo_file"),
-        album_hdlr.add_photo_to_album);
-
-app.get('/pages/:page_name', page_hdlr.generate);
-app.get('/pages/:page_name/:sub_page', page_hdlr.generate);
-*/
 
 app.get("/", (req, res) => {
     res.redirect("/v1/getMap?Lat=39.260179&Long=-76.801616");
