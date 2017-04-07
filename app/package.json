@@ -1,0 +1,20 @@
+{
+  "name": "dcbwebsite",
+  "description": "DCB's from-scratch effort to build a web site using NodeJS, CSS, and Bootstrap",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "body-parser": "1.x",
+    "express": "4.8",
+    "async": "2.x",
+    "mongodb": "2.x",
+    "morgan": "1.x",
+    "multer": "1.x"
+  },
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DCBailey",
+  "license": "MIT"
+}
