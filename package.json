@@ -1,5 +1,5 @@
 {
-  "name": "dcbwebsite",
+  "name": "dcb-travel-website",
   "description": "DCB's from-scratch effort to build a web site using NodeJS, CSS, and Bootstrap",
   "version": "0.0.1",
   "private": true,
@@ -16,5 +16,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "DCBailey",
-  "license": "MIT"
+  "license": "MIT",
+  "engines" : {
+    "node" : "6.9.x"
+  }
 }

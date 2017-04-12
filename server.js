@@ -24,7 +24,7 @@ function start_web_service() {
 console.log('Web server config file being read!!  Standby ...');
 
 console.log('Entering readfile function now ...');
-fs.readFile('./config.json', 'utf8', function(err, data)  {
+fs.readFile('config.json', 'utf8', function(err, data)  {
     if (err) {
         console.log("ERROR reading config file: " + err.code + " (" + err.message + ")");
         return;
@@ -90,7 +90,7 @@ function load_map_page(req, res, next) {
        console.log('The Lat passed is ' + Lat + ' and the Long is ' + Long + '\n');
        console.log('The req.query is ' + JSON.stringify(req.query));        
 
-        fs.readFile('../static/index.html', (err, contents) => {
+        fs.readFile('./static/index.html', (err, contents) => {
             if (err) {
             console.log("Error reading index.html file" + JSON.stringify(err));
          } else {
@@ -109,7 +109,7 @@ function load_map_page(req, res, next) {
 
 function load_form_page(req, res, next) {
 
-fs.readFile('../static/WhereToForm.html', (err, contents) => {
+fs.readFile('./static/WhereToForm.html', (err, contents) => {
             if (err) {
             console.log("Error reading WhereToForm.html file" + JSON.stringify(err));
          } else {
