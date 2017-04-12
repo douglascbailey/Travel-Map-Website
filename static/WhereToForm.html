@@ -67,14 +67,14 @@ function CheckInput() {
     LO = LOObj.value;
     console.log("LA = " + LA + " and LO = " + LO);
    // If Lat is Not a Number or less than one or greater than 90
-    if (LA == "" || LA < -90 || LA > 90 ) {
+    if (LA == "" || /-?[a-zA-Z]+/.test(LA) || LA < -90 || LA > 90 ) {
         console.log("Entered the If Lat not valid logic!");
         txt = "Latitude is not valid, please try again.";
         document.getElementById("alert").innerHTML = txt;
         return false;
         };
     // If Long is Not a Number or less than one or greater than 180
-    if (LO == ""|| LO < -180 || LO > 180 ) {
+    if (LO == "" || /-?[a-zA-Z]+/.test(LO) || LO < -180 || LO > 180 ) {
         console.log("Entered the If Long not valid logic!");
        txt = "Longitude is not valid, please try again.";
        document.getElementById("alert").innerHTML = txt;
