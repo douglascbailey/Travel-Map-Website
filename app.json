@@ -1,0 +1,13 @@
+{
+    "name": "Node.js Travel Map Hobby Website",
+    "description": "Node.js app showing Google Maps for destinations.",
+    "repository": "https://github.com/douglascbailey/travel-map-website",
+    "logo": "http://node-js-sample.heroku.com/node.svg",
+    "keywords": ["node", "express", "static"],
+    "image": "heroku/nodejs",
+    "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs#v69"
+    }
+  ],
+}

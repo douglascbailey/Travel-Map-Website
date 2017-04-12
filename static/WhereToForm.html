@@ -28,37 +28,7 @@
  <p>{{Error}}</p>
 
 <script>
-/* function CheckLat(Lat) {
-    var LA, LAObj;
-        // Get the value of the input field with id="Lat"
-    LAObj = Lat;
-    LA = Lat.value;
-    // If Lat is Not a Number or less than one or greater than 90
-    if (isNaN(LA) || LAObj.checkValidity() == false ) {
-        //async.waterfall ([
-        alert("Your latitude is not valid; must be between -90 and 90");
-        Lat.value = "";
-        document.WhereTo.Lat.Focus();
-        return
-        //])
-    }; 
-}
 
-function CheckLong(Long) {
-    var LO, LOObj;
-        // Get the value of the input field with id="Lat"
-    LOObj = Long;
-    LO = Long.value;
-    // If Long is Not a Number or less than one or greater than 90
-    if (isNaN(LO) || LOObj.checkValidity() == false ) {
-       //async.waterfall ([)
-       alert("Your longitude is not valid; must be between -180 and 180");
-       Long.value = "";
-       document.WhereTo.Long.Focus();
-       return
-        //])
-    };  
-} */
 function CheckInput() {
     console.log("Entered the CheckInput function");  
     LAObj = document.WhereTo.Lat;
