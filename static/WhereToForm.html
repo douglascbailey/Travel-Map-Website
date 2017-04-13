@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base href="~/"/>
   <title>Destination Unknown</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +22,7 @@
     <div class="form-group">-->
       <label for="text">Longitude:</label>
       <input type="text" class="form-control" name="Long" id="Long" placeholder="Enter longitude between -180 and 180" min=-180 max=180 required>
-      <p><br><button type="submit" class="btn btn-default" formmethod="Post" formenctype="application/x-www-form-urlencoded" formaction="http://Localhost:3000/v1/getCustomMap">Submit</button></p>
+      <p><br><button type="submit" class="btn btn-default" formmethod="Post" formenctype="application/x-www-form-urlencoded" formaction="/v1/getCustomMap">Submit</button></p>
     <p id="alert"></p>
   </div>
  <p id="alert"></p>
