@@ -58,7 +58,7 @@ app.get('/v1/wheretoform', function (req, res) {
 });
 app.post('/v1/getCustomMap', function (req, res) {
     //var urlEncodedParser = bodyParser.urlencoded({ extended: false });
-    console.log('The POST req.body is :' + JSON.stringify(req.body));
+    //console.log('The POST req.body is :' + JSON.stringify(req.body));
     load_custom_map_page(req, res)
 });
 
@@ -105,7 +105,7 @@ function load_map_page(req, res, next) {
             contentsFinal = contentsLat.replace('{{Long}}', Long);
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(contentsFinal);
-            console.log(contentsFinal);
+            //console.log(contentsFinal);
             }
         });
 }
@@ -122,13 +122,13 @@ fs.readFile('./static/WhereToForm.html', (err, contents) => {
             contentsFinal = contents.replace('{{Error}}', "");
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(contentsFinal);
-            console.log(contentsFinal);
+            //console.log(contentsFinal);
             }
         });
 }
 function load_form_page_with_error(req, res, ErrorMsg) {
     
-fs.readFile('../static/WhereToForm.html', (err, contents) => {
+fs.readFile('./static/WhereToForm.html', (err, contents) => {
             if (err) {
             console.log("Error reading WhereToForm.html file" + JSON.stringify(err));
          } else {
@@ -138,7 +138,7 @@ fs.readFile('../static/WhereToForm.html', (err, contents) => {
             contentsFinal = contents.replace('{{Error}}', ErrorMsg);
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(contentsFinal);
-            console.log(contentsFinal);
+            //console.log(contentsFinal);
             }
         });
 }
@@ -161,7 +161,7 @@ function load_custom_map_page(req, res, multerObj) {
             return
         }
       
-       fs.readFile('../static/index.html', (err, contents) => {
+       fs.readFile('./static/index.html', (err, contents) => {
             if (err) {
             console.log("Error reading index.html file" + JSON.stringify(err));
          } else {
@@ -173,7 +173,7 @@ function load_custom_map_page(req, res, multerObj) {
             contentsFinal = contentsLat.replace('{{Long}}', Long);
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(contentsFinal);
-            console.log(contentsFinal);
+            //console.log(contentsFinal);
             }
         });
 }
