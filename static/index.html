@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<base href="~/"/>
 <style>
   .jumbotron {
     text-align: center;
@@ -38,21 +39,21 @@
       <a class="navbar-brand" href="#">Where to Next?</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="http://Localhost:3000/v1/getMap?Lat=39.260179&Long=-76.801616">Home</a></li>
+      <li class="active"><a href="/v1/getMap?Lat=39.260179&Long=-76.801616">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">U.S.<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="http://Localhost:3000/v1/getMap?Lat=32.779375&Long=-79.926927">Charleston, SC</a></li>
-          <li><a href="http://Localhost:3000/v1/getMap?Lat=36.126297&Long=-112.159435">Grand Canyon, CO</a></li>
-          <li><a href="http://Localhost:3000/v1/getMap?Lat=47.608939&Long=-122.340369">Seattle, WA</a></li>
+          <li><a href="/v1/getMap?Lat=32.779375&Long=-79.926927">Charleston, SC</a></li>
+          <li><a href="/v1/getMap?Lat=36.126297&Long=-112.159435">Grand Canyon, CO</a></li>
+          <li><a href="/v1/getMap?Lat=47.608939&Long=-122.340369">Seattle, WA</a></li>
         </ul>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Europe<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="http://Localhost:3000/v1/getMap?Lat=53.346571&Long=-6.258306">Dublin, IR</a></li>
-          <li><a href="http://Localhost:3000/v1/getMap?Lat=48.8589506&Long=2.3123646">Paris, FR</a></li>
+          <li><a href="/v1/getMap?Lat=53.346571&Long=-6.258306">Dublin, IR</a></li>
+          <li><a href="/v1/getMap?Lat=48.8589506&Long=2.3123646">Paris, FR</a></li>
         </ul>
       </li>
-      <li><a href="http://Localhost:3000/v1/getMap?Lat=-41.283415&Long=174.774595">Wellington, NZ</a></li>
-      <li><a href="http://Localhost:3000/v1/wheretoform">Choose your Destination ...</a></li>
+      <li><a href="/v1/getMap?Lat=-41.283415&Long=174.774595">Wellington, NZ</a></li>
+      <li><a href="/v1/wheretoform">Choose your Destination ...</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
