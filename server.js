@@ -23,6 +23,9 @@ function start_web_service() {
 //fs.fileReadSync('./config.json') from jsprojects webapp
 console.log('Web server config file being read!!  Standby ...');
 
+var port = process.env.PORT || 3000;
+console.log("Heroku port set to " + port);
+
 console.log('Entering readfile function now ...');
 fs.readFile('config.json', 'utf8', function(err, data)  {
     if (err) {
@@ -34,12 +37,12 @@ fs.readFile('config.json', 'utf8', function(err, data)  {
     const config = JSON.parse(data);
     app.use(express.static(config.webserver.folder));
     console.log("config file read; value of config is" +JSON.stringify(config));
-    app.listen(config.webserver.port, function(err) {
+    app.listen(port, function(err) {
         if (err) {
         console.log('ERROR: " + err.code + " (" + err.message + ")"');
         return;
         }
-    console.log(`Web server now listening on port ${config.webserver.port}`);
+    console.log(`Web server now listening on port ${port}`);
     });
 });
 } //end of start_web_service
