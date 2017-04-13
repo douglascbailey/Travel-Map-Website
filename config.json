@@ -1,6 +1,6 @@
 {
     "webserver": {
         "folder": "./static",
-        "port": "443"
+        "port": "$PORT"
     }
 }
