@@ -21,12 +21,12 @@ function start_web_service() {
 //var multerObj = multer();
 //console.log('The initial value of multerObjis :' + toString(multerObj));
 //fs.fileReadSync('./config.json') from jsprojects webapp
-console.log('Web server config file being read!!  Standby ...');
+//console.log('Web server config file being read!!  Standby ...');
 
 var port = process.env.PORT || 3000;
 console.log("Heroku port set to " + port);
 
-console.log('Entering readfile function now ...');
+/*console.log('Entering readfile function now ...');
 fs.readFile('config.json', 'utf8', function(err, data)  {
     if (err) {
         console.log("ERROR reading config file: " + err.code + " (" + err.message + ")");
@@ -36,7 +36,7 @@ fs.readFile('config.json', 'utf8', function(err, data)  {
     console.log("Value of data is " +JSON.stringify(data));
     const config = JSON.parse(data);
     app.use(express.static(config.webserver.folder));
-    console.log("config file read; value of config is" +JSON.stringify(config));
+    console.log("config file read; value of config is" +JSON.stringify(config)); */
     app.listen(port, function(err) {
         if (err) {
         console.log('ERROR: " + err.code + " (" + err.message + ")"');
@@ -44,7 +44,6 @@ fs.readFile('config.json', 'utf8', function(err, data)  {
         }
     console.log(`Web server now listening on port ${port}`);
     });
-});
 } //end of start_web_service
 
 start_web_service(); //calls function to load web service
@@ -101,8 +100,8 @@ function load_map_page(req, res, next) {
             var contentsFinal = "";
             contents = contents.toString('utf8');
             // Replace Lat and Long
-            contentsLat = contents.replace('{{Lat}}', Lat);
-            contentsFinal = contentsLat.replace('{{Long}}', Long);
+            contentsLat = contents.replace(/(LATVAR)+/g, Lat);
+            contentsFinal = contentsLat.replace(/(LONGVAR)+/g, Long);
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(contentsFinal);
             //console.log(contentsFinal);
@@ -169,8 +168,8 @@ function load_custom_map_page(req, res, multerObj) {
             var contentsFinal = "";
             contents = contents.toString('utf8');
             // Replace Lat and Long
-            contentsLat = contents.replace('{{Lat}}', Lat);
-            contentsFinal = contentsLat.replace('{{Long}}', Long);
+            contentsLat = contents.replace(/(LATVAR)+/g, Lat);
+            contentsFinal = contentsLat.replace(/(LONGVAR)+/g, Long);
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(contentsFinal);
             //console.log(contentsFinal);

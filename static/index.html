@@ -20,11 +20,9 @@
   }
   .floating-box {
   display: inline-block;
-  width: 400px;
-  height: 600px;
   margin: 20px;
   text-align: center;
-  color: blue;
+  color: black;
   }
 </style>
 </head>
@@ -60,7 +58,8 @@
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login  </a></li>
     </ul>
   </nav>
- <div class=row>
+ 
+ <div class="row">
     <div class=mapblock>
         
         <div class="floating-box" id="googleMap1" style="width:400px;height:300px;">
@@ -78,10 +77,12 @@
 
     </div>
   </div>
+  <div class="row floating-box"><h7>Showing maps for Latitude = LATVAR and Longitude = LONGVAR</h7>
+</div>
 <script>
 function myMap() {
-  var Lat = {{Lat}};
-  var Long = {{Long}};
+  var Lat = LATVAR;
+  var Long = LONGVAR;
   var mapOptions1 = {
     center: new google.maps.LatLng(Lat, Long),
     zoom:13,
