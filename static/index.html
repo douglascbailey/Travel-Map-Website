@@ -24,9 +24,12 @@
   text-align: center;
   color: black;
   }
+  #greeting {
+    text-align: Right;
+  }
 </style>
 </head>
-<body>
+<body onload="set_Home_LatAndLong()">
 <div class="container-fluid">
   <div class="title">
   <h1>Google Maps of Great Places You Want to Visit!!</h1>
@@ -37,7 +40,7 @@
       <a class="navbar-brand" href="#">Where to Next?</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/v1/getMap?Lat=39.260179&Long=-76.801616">Home</a></li>
+      <li class="active"><a name="home" href="">Home</a></li> <!-- href of home anchor is set by set_Home_LatandLong function on loading -->
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">U.S.<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/v1/getMap?Lat=32.779375&Long=-79.926927">Charleston, SC</a></li>
@@ -60,11 +63,11 @@
       <li><a href="/v1/wheretoform">Choose your Destination ...</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login  </a></li>
+      <li><a href="#" onclick="check_cookie();return false;"><span class="glyphicon glyphicon-log-in"></span> Login  </a></li>
     </ul>
   </nav>
- 
+<div id="greeting" margin=0px><h7></h7>
+</div>
  <div class="row">   
         <div class="floating-box" id="googleMap1" style="width:400px;height:300px;">
           <div class="caption"><h5> The ROADMAP View:</h5></div>
@@ -82,6 +85,89 @@
 <div class="row floating-box" margin=0px><h7>Showing maps for Latitude = LATVAR and Longitude = LONGVAR</h7>
 </div>
 <script>
+function set_Home_LatAndLong() {
+    var HomeLat = get_cookie("mapLat");
+    var HomeLong = get_cookie("mapLong");
+    if (HomeLat == "") {HomeLat = 39.260179};
+    if (HomeLong == "") {HomeLong = -76.801616};
+    HomeURL = "/v1/getHome?Lat=" + HomeLat + "&Long=" + HomeLong; 
+    document.links.namedItem("home").href = HomeURL; //Assigns the home href a value using cookies if present
+    var SignedInUser = get_cookie("mapusername");
+    if (SignedInUser != "") {document.getElementById("greeting").innerHTML = "Welcome, " + SignedInUser + "!"};
+    str = document.URL;
+    if (str.indexOf("getFirstMap") > 0) {location.assign(HomeURL)}; //Checks for home maps if user exists on first load
+    //if (document.URL != document.links.namedItem("home").href) {location.assign(HomeURL)}; //getMap will cause reload, but a getHome URL will not
+    //str = window.location.href
+    //if (str.indexOf(HomeLat) == 0) {location.assign(HomeURL)};
+}
+
+function IsNumeric(input) {
+    return (input - 0) == input && (''+input).trim().length > 0;
+}
+
+function check_cookie() {
+    var user = get_cookie("mapusername");
+    if (user != "") {
+        var NewID = confirm("Would you like to create a new user and home location?");
+        if (NewID == true) {
+          delete_map_cookies();
+          set_new_user();
+        } else { 
+        return;
+      }
+    } else {
+      set_new_user();
+    }
+}
+
+function set_new_user() {
+        /* user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            set_cookie("mapusername", user, 365);
+        }
+        cLat = prompt("Please enter the Latitude of your home:", "");
+        if (cLat != "" && cLat != null) {
+            set_cookie("mapLat", cLat, 365);    //Add prompts for Home Lat and Long here and create each as separate cookie
+        }
+        cLong = prompt("Please enter the Longitude of your home:", "");
+        if (cLong != "" && cLong != null) {
+            set_cookie("mapLong", cLong, 365);    //Add prompts for Home Lat and Long here and create each as separate cookie
+        }
+        
+        Insert Sync block here?? */
+        var myWindow = window.open("/v1/SetUserAndHome", "", "width=800,height=400");
+        //set_Home_LatAndLong();
+        //location.assign(HomeURL);
+}
+
+function get_cookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);//Value of username returned will be assigned to user in check_cookie function
+        }
+    }
+    return "";
+}
+
+function set_cookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function delete_map_cookies() {
+  document.cookie = "mapusername=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "maplat=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "maplong=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
 function myMap() {
   var Lat = LATVAR;
   var Long = LONGVAR;
@@ -97,12 +183,12 @@ function myMap() {
   };
   var mapOptions3 = {
     center: new google.maps.LatLng(Lat, Long),
-    zoom:10,
+    zoom:8,
     mapTypeId: google.maps.MapTypeId.TERRAIN
   };
   var mapOptions4 = {
     center: new google.maps.LatLng(Lat, Long),
-    zoom:10,
+    zoom:8,
     mapTypeId: google.maps.MapTypeId.HYBRID
   };
   var marker1 = new google.maps.Marker({position:mapOptions1.center});

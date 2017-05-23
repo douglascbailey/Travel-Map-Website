@@ -49,12 +49,26 @@ fs.readFile('config.json', 'utf8', function(err, data)  {
 start_web_service(); //calls function to load web service
 
 //Routing Instructions for service
+app.get('/v1/getFirstMap', function (req, res) {
+    load_map_page(req, res)
+});
+
 app.get('/v1/getMap', function (req, res) {
     load_map_page(req, res)
 });
-app.get('/v1/wheretoform', function (req, res) {
-    load_form_page(req, res)
+
+app.get('/v1/getHome', function (req, res) {
+    load_map_page(req, res)
 });
+
+app.get('/v1/wheretoform', function (req, res) {
+    load_wheretoform_page(req, res)
+});
+
+app.get('/v1/SetUserAndHome', function (req, res) {
+    load_setuserform_page(req, res)
+});
+
 app.post('/v1/getCustomMap', function (req, res) {
     //var urlEncodedParser = bodyParser.urlencoded({ extended: false });
     //console.log('The POST req.body is :' + JSON.stringify(req.body));
@@ -62,9 +76,9 @@ app.post('/v1/getCustomMap', function (req, res) {
 });
 
 app.get("/", (req, res) => {
-    res.redirect("/v1/getMap?Lat=39.260179&Long=-76.801616");
+    res.redirect("/v1/getFirstMap?Lat=39.2602&Long=-76.8017");//Use DCB Home as defualt for first load
     res.end();
-    console.log("Root request redirected to /v1/getMaps");
+    console.log("Root request redirected to /v1/getMap");
     });
 
 app.get('*', four_oh_four);
@@ -74,20 +88,16 @@ function four_oh_four(req, res) {
     res.end("No such URL resource, please try again\n");
 }
 
-function hi_there() {
-    console.log("Made it to the hi_there fuction\n")
-}
-
 function load_map_page(req, res, next) {
        //Determine what Lat and Long were requested in GET query
        //req.parsed_url = url.parse(req.url, true);
        var core_url = req.path;
 
        var Lat = req.query.Lat;
-       if(Lat == "") {Lat = 39.26};
+       if(Lat == "" || Lat == null) {Lat = 39.12};
        console.log('The value of Lat is: ' + Lat)
        var Long = req.query.Long
-       if(Long == "") {Long = -76.80};
+       if(Long == "" || Long == null) {Long = -76.81};
        console.log('The value of Long is: ' + Long)
        console.log('The Lat passed is ' + Lat + ' and the Long is ' + Long + '\n');
        console.log('The req.query is ' + JSON.stringify(req.query));        
@@ -109,7 +119,7 @@ function load_map_page(req, res, next) {
         });
 }
 
-function load_form_page(req, res, next) {
+function load_wheretoform_page(req, res, next) {
 
 fs.readFile('./static/WhereToForm.html', (err, contents) => {
             if (err) {
@@ -125,6 +135,19 @@ fs.readFile('./static/WhereToForm.html', (err, contents) => {
             }
         });
 }
+
+function load_setuserform_page(req, res, next) {
+
+fs.readFile('./static/SetUserAndHome.html', (err, contents) => {
+            if (err) {
+            console.log("Error reading SetUserAndHome Form.html file" + JSON.stringify(err));
+         } else {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(contents);
+            }
+        });
+}
+
 function load_form_page_with_error(req, res, ErrorMsg) {
     
 fs.readFile('./static/WhereToForm.html', (err, contents) => {

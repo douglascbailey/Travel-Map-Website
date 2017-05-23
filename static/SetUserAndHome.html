@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="~/"/>
+  <title>Set Map User and Home Coordinates</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<div class="container">
+  <h2>New Map User and Coordinates:</h2>
+  <form name="SetUser" onsubmit= "return CheckInput();">
+    <div class="form-group">
+      <label for="text">User Name:</label> 
+      <input type="text" class="form-control" name="User" id="User" placeholder="Enter the user name" required>
+      <label for="text">Latitude:</label> 
+      <input type="text" class="form-control" name="Lat" id="Lat" placeholder="Enter latitude between -90 and 90" min=-90 max=90 required>
+      <label for="text">Longitude:</label>
+      <input type="text" class="form-control" name="Long" id="Long" placeholder="Enter longitude between -180 and 180" min=-180 max=180 required>
+      <p><br><button type="submit" class="btn btn-default" >Submit</button></p>
+    <p id="alert"></p>
+  </div>
+ <p id="alert"></p>
+ <!-- <p>{{Error}}</p> -->
+
+<script>
+
+function CheckInput() {
+    LAObj = document.SetUser.Lat;
+    LOObj = document.SetUser.Long;
+    UserObj = document.SetUser.User
+    LA = LAObj.value;
+    LO = LOObj.value;
+    USER = UserObj.value;
+    // If Lat is Not a Number or less than one or greater than 90
+    if (LA == "" || /-?[a-zA-Z]+/.test(LA) || LA < -90 || LA > 90 ) {
+        console.log("Entered the If Lat not valid logic!");
+        txt = "Latitude is not valid, please try again.";
+        document.getElementById("alert").innerHTML = txt;
+        return false;
+        };
+    // If Long is Not a Number or less than one or greater than 180
+    if (LO == "" || /-?[a-zA-Z]+/.test(LO) || LO < -180 || LO > 180 ) {
+        console.log("Entered the If Long not valid logic!");
+       txt = "Longitude is not valid, please try again.";
+       document.getElementById("alert").innerHTML = txt;
+       return false;
+       };
+    txt = "Inputs OK!";
+    document.getElementById("alert").innerHTML = txt;
+    //Set cookies
+    if (USER != "" && USER != null) {
+            set_cookie("mapusername", USER, 365);    
+            set_cookie("mapLat", LA, 365);
+            set_cookie("mapLong", LO, 365);
+          } 
+    //nextURL = window.opener.location.href;  NO NEED TO RELOAD PAGE WITH NEW HOME LAT AND LONG - INDEX WILL DO THAT AS PART OF ONLOAD CODE
+    //window.open(nextURL);
+    nextURL = "/v1/getHome?Lat=" + LA + "&Long=" + LO
+    //window.open(nextURL);
+    //location.assign(nextURL);
+    //window.parent.location.reload();
+    window.onunload = refreshParent(nextURL);
+    window.close();
+    //parentWindow = window.parent;  DO YOU NEED TO RELOAD THE PARENT WINDOW HERE?
+    return true;
+}
+
+function refreshParent(nextURL) {
+        //window.opener.location.href = nextURL;
+        window.opener.location.assign(nextURL);
+        window.opener.focus();
+    }
+
+function set_cookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+</script>
+
+  </form>
+</div>
+
+</body>
+</html>
