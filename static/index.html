@@ -203,6 +203,24 @@ function myMap() {
   marker3.setMap(map3);
   var map4 = new google.maps.Map(document.getElementById("googleMap4"),mapOptions4);
   marker4.setMap(map4);
+
+// Zoom when clicking on a map marker
+  google.maps.event.addListener(marker1,'click',function() {
+    map1.setZoom(15);
+    map1.setCenter(marker1.getPosition());
+  });
+  google.maps.event.addListener(marker2,'click',function() {
+    map2.setZoom(15);
+    map2.setCenter(marker2.getPosition());
+  });
+  google.maps.event.addListener(marker3,'click',function() {
+    map3.setZoom(11);
+    map3.setCenter(marker3.getPosition());
+  });
+  google.maps.event.addListener(marker4,'click',function() {
+    map4.setZoom(11);
+    map4.setCenter(marker4.getPosition());
+  });
 }
 </script>
 
