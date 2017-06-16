@@ -206,19 +206,43 @@ function myMap() {
 
 // Zoom when clicking on a map marker
   google.maps.event.addListener(marker1,'click',function() {
-    map1.setZoom(15);
+    var currzoom1 = map1.getZoom();
+    if (currzoom1 <= 17) { map1.setZoom(currzoom1 + 2)};
+    map1.setCenter(marker1.getPosition());
+  });
+  google.maps.event.addListener(marker1,'rightclick',function() {
+    var currzoom1 = map1.getZoom();
+    if (currzoom1 >= 2) { map1.setZoom(currzoom1 - 2)};
     map1.setCenter(marker1.getPosition());
   });
   google.maps.event.addListener(marker2,'click',function() {
-    map2.setZoom(15);
+    var currzoom2 = map2.getZoom();
+    if (currzoom2 <= 17) { map2.setZoom(currzoom2 + 2)};
+    map2.setCenter(marker2.getPosition());
+  });
+  google.maps.event.addListener(marker2,'rightclick',function() {
+    var currzoom2 = map2.getZoom();
+    if (currzoom2 >= 2) { map2.setZoom(currzoom2 - 2)};
     map2.setCenter(marker2.getPosition());
   });
   google.maps.event.addListener(marker3,'click',function() {
-    map3.setZoom(11);
+    var currzoom3 = map3.getZoom();
+    if (currzoom3 <= 17) { map3.setZoom(currzoom3 + 2)};
+    map3.setCenter(marker3.getPosition());
+  });
+  google.maps.event.addListener(marker3,'rightclick',function() {
+    var currzoom3 = map3.getZoom();
+    if (currzoom3 >= 2) { map3.setZoom(currzoom3 - 2)};
     map3.setCenter(marker3.getPosition());
   });
   google.maps.event.addListener(marker4,'click',function() {
-    map4.setZoom(11);
+    var currzoom4 = map4.getZoom();
+    if (currzoom4 <= 17) { map4.setZoom(currzoom4 + 2)};
+    map4.setCenter(marker4.getPosition());
+  });
+  google.maps.event.addListener(marker4,'rightclick',function() {
+    var currzoom4 = map4.getZoom();
+    if (currzoom4 >= 2) { map4.setZoom(currzoom4 - 2)};
     map4.setCenter(marker4.getPosition());
   });
 }
