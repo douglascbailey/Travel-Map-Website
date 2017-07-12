@@ -106,9 +106,8 @@ function set_Home_LatAndLong() {
     var SignedInUser = get_cookie("mapusername");
     if (SignedInUser != "") {document.getElementById("greeting").innerHTML = "Welcome, " + SignedInUser + "!"};
     str = document.URL;
-    if (str.indexOf("getFirstMap") > 0) {location.assign(HomeURL);
-    }; //Checks for home maps if user exists on first load
-    //if (document.URL != document.links.namedItem("home").href) {location.assign(HomeURL)}; //getMap will cause reload, but a getHome URL will not
+    if (str.indexOf("getFirstMap") > 0) {console.log("getFirstMap index tripped"); location.assign(HomeURL);}; //Checks for home maps if user exists on first load
+    if (str.indexOf("getHome") > 0) { console.log("getHome index tripped"); document.getElementById("UpdateMap").setAttribute("src", "https://maps.googleapis.com/maps/api/js?key=AIzaSyAqbatfwy49ZluqLAtC_C1_XZMXTLXDeL8&callback=myMap");}; //Turns on map script
     //str = window.location.href
     //if (str.indexOf(HomeLat) == 0) {location.assign(HomeURL)};
 }
@@ -245,7 +244,7 @@ function myMap() {
 }
 </script>
 
-<script id="UpdateMap" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqbatfwy49ZluqLAtC_C1_XZMXTLXDeL8&callback=myMap">
+<script id="UpdateMap" src="">
 </script>
 
 </div> <!-- close container-fluid division -->

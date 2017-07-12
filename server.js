@@ -59,7 +59,7 @@ app.post('/v1/getCustomMap', function (req, res) {
 });
 
 app.get("/", (req, res) => {
-    res.redirect("/v1/getFirstMap?Lat=39.2602&Long=-76.8017");//GetFirstMap URL set here; Use DCB Home as default for first load
+    res.redirect("/v1/getFirstMap");//GetFirstMap URL set here; Use DCB Home as default for first load
     res.end();
     console.log("Root request redirected to /v1/getMap");
     });
